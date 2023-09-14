@@ -29,17 +29,19 @@ fn setup (
     commands.spawn(Camera2dBundle::default());
 
     let texture_handle = asset_server.load("sanssprites_transparent.png");
-    let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(30.0, 28.0), 11, 1, Some(Vec2{x: 5.0, y: 0.0}), Some(Vec2{x: 5.0, y: 468.0}));
+    let texture_atlas = TextureAtlas::from_grid(texture_handle, Vec2::new(32.0, 30.0), 15, 1, Some(Vec2{x: 5.0, y: 0.0}), Some(Vec2{x: 5.0, y: 519.0}));
     let texture_atlas_handle = texture_atlases.add(texture_atlas);
 
-    let animation_indices = AnimationIndices { first: 0, last: 10 };
+    let animation_indices = AnimationIndices { first: 0, last: 14 };
+
+
 
     commands.spawn((
         SpriteSheetBundle {
             texture_atlas: texture_atlas_handle,
             sprite: TextureAtlasSprite::new(animation_indices.first),
             transform: Transform::from_scale(Vec3::splat(4.0)),
-            ..Default::default()
+            ..default()
         },
         animation_indices,
         AnimationTimer(Timer::from_seconds(0.1, TimerMode::Repeating)),
@@ -68,7 +70,7 @@ fn sans_animation(
             source: asset_server.load("sans_1.ogg"),
             settings: PlaybackSettings {
                 mode: PlaybackMode::Despawn,
-                volume: Volume::Relative(VolumeLevel::new(1.0)),
+                volume: Volume::Relative(VolumeLevel::new(0.5)),
                 ..default()
             }
         });
