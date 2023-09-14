@@ -75,4 +75,19 @@ fn sans_animation(
             }
         });
     }
+
+    if keyboard.just_pressed(KeyCode::Key1) == true {
+        for (mut sprite, _) in &mut query {
+            sprite.index = 0;
+        }
+
+        commands.spawn(AudioBundle{
+            source: asset_server.load("sans_1.ogg"),
+            settings: PlaybackSettings {
+                mode: PlaybackMode::Despawn,
+                volume: Volume::Relative(VolumeLevel::new(10.0)),
+                ..default()
+            }
+        });
+    }
 }
